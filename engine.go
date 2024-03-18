@@ -43,6 +43,10 @@ func (e *Engine) Match(r *dns.Msg) bool {
 		return false
 	}
 
+	if len(r.Question) == 0 {
+		return false
+	}
+
 	e.RLock()
 	defer e.RUnlock()
 
@@ -180,7 +184,7 @@ func newEngine(ctx context.Context, path, cacheDir string, syncPeriod time.Durat
 	}
 
 	log.Infof("new engine, path %s sync period %s", path, syncPeriod.String())
-	return e, nil
+	return e, err
 }
 
 func newStorageFromPath(path string) (*filterlist.RuleStorage, error) {
