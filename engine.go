@@ -194,9 +194,6 @@ func newStorageFromPath(path string) (*filterlist.RuleStorage, error) {
 		return nil, err
 	}
 	ruleLists = append(ruleLists, ruleList)
-	if err != nil {
-		return nil, err
-	}
 
 	return filterlist.NewRuleStorage(ruleLists)
 }
